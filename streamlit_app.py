@@ -10,12 +10,12 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 #preprocess data
-smr = pd.read_excel("/Users/ACER/Work/TETRIS/capstone_project/database/suicide.xlsx")
-smr_dunia = pd.read_excel("/Users/ACER/Work/TETRIS/capstone_project/database/world_suicide.xlsx")
-unemployment = pd.read_excel("/Users/ACER/Work/TETRIS/capstone_project/database/unemployment.xlsx")
-gdp = pd.read_excel("/Users/ACER/Work/TETRIS/capstone_project/database/gdp.xlsx")
-alcohol = pd.read_excel("/Users/ACER/Work/TETRIS/capstone_project/database/alcohol.xlsx")
-mental = pd.read_csv("/Users/ACER/Work/TETRIS/capstone_project/database/mental.csv")
+smr = pd.read_excel("./database/suicide.xlsx")
+smr_dunia = pd.read_excel("./database/world_suicide.xlsx")
+unemployment = pd.read_excel("./database/unemployment.xlsx")
+gdp = pd.read_excel("./database/gdp.xlsx")
+alcohol = pd.read_excel("./database/alcohol.xlsx")
+mental = pd.read_csv("./database/mental.csv")
 mental.columns=['country','code','year','mental']
 mentall=mental[mental['year'] == 2019] 
 smr_new=smr[['Country Name','2019']]
