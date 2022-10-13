@@ -37,7 +37,7 @@ df = pd.DataFrame(res,columns=['smr','unemployment','gdp','alcohol','mental'])
 
 
 
-st.set_page_config(page_title="Korelasi Tingkat Bunuh Diri",layout="centered")
+st.set_page_config(page_title="Korelasi Tingkat Kematian Bunuh Diri",layout="centered")
 st.title("Apakah Tingkat Kematian bunuh diri dipengaruhi oleh banyaknya pengangguran?")
 st.subheader("Tingkat Kematian Bunuh Diri")
 st.write("Kematian karena bunuh diri merupakan masalah yang sangat rumit. Setiap kasus bunuh diri adalah tragedi. Organisasi Kesehatan Dunia (WHO) dan studi Global Burden of Disease memperkirakan bahwa hampir 800.000 orang meninggal karena bunuh diri setiap tahun artinya ada satu orang yang bunuh diri setiap 40 detik. Menurut studi tersebut pada tahun 2019 bunuh diri berada di peringkat ke-15 dari 33 penyebab kematian lainnya. Namun jika dibandingkat dengan tahun-tahun sebelumnya, nilai tingkat kematian bunuh diri terus mengecil.")
