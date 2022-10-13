@@ -37,7 +37,7 @@ df = pd.DataFrame(res,columns=['smr','unemployment','gdp','alcohol','mental'])
 
 
 
-st.set_page_config(layout="wide")
+st.set_page_config(page_title="Korelasi Tingkat Bunuh Diri",layout="centered")
 st.title("Apakah Tingkat Kematian bunuh diri dipengaruhi oleh banyaknya pengangguran?")
 st.subheader("Tingkat Kematian Bunuh Diri")
 st.write("Kematian karena bunuh diri merupakan masalah yang sangat rumit. Setiap kasus bunuh diri adalah tragedi. Organisasi Kesehatan Dunia (WHO) dan studi Global Burden of Disease memperkirakan bahwa hampir 800.000 orang meninggal karena bunuh diri setiap tahun artinya ada satu orang yang bunuh diri setiap 40 detik. Menurut studi tersebut pada tahun 2019 bunuh diri berada di peringkat ke-15 dari 33 penyebab kematian lainnya. Namun jika dibandingkat dengan tahun-tahun sebelumnya, nilai tingkat kematian bunuh diri terus mengecil.")
@@ -83,7 +83,7 @@ fig1.update_layout(
         xref='paper',
         yref='paper',
         text='Source: <a href="https://data.worldbank.org/indicator/SH.STA.SUIC.P5">\
-            The World Bank Data / Suicide Mortality Rate (per 100000 population)</a>',
+            The World Bank Data / Suicide Mortality Rate</a>',
         showarrow = False
     )]
 )
@@ -98,12 +98,9 @@ def custom_legend_name(new_names):
     for i, new_name in enumerate(new_names):
         fig2.data[i].name = new_name
 custom_legend_name(label_fig2)
-col1, col2 = st.columns(2)
-with col1:
-    st.plotly_chart(fig1,use_container_width=True)
+st.plotly_chart(fig1,use_container_width=True)
 
-with col2:
-    st.plotly_chart(fig2,use_container_width=True)
+st.plotly_chart(fig2,use_container_width=True)
 
 
 st.subheader("Beberapa faktor pengaruh tingkat bunuh diri")
@@ -120,15 +117,14 @@ with c2:
 
 st.subheader("Korelasi dengan Tingkat Kematian Bunuh Diri")
 
-colo1,colo2,colo3=st.columns(3)
+colo1,colo2=st.columns(2)
 with colo1:
     st.write(lorem.paragraph())
 with colo2:
     var2 = st.selectbox(label = "Pilih data pembanding", options = ('Tingkat Pengangguran','GDP per Kapita','Jumlah Konsumsi Alkohol per Kapita','Persentase Populasi dengan Gangguan Mental dan Penyalahgunaan Zat'))
-    fig5 = px.scatter(res.dropna(), x='smr', y=v[var2],labels={v[var2]:var2,'smr':'Tingkat Kematian Bunuh Diri'},color='smr')
+    fig5 = px.scatter(res.dropna(), x='smr', y=v[var2],labels={v[var2]:var2,'smr':'Tingkat Kematian Bunuh Diri'})
     st.plotly_chart(fig5,use_container_width=True)
 
-with colo3:
     corrMatrix = df.corr()
     fig4=plt.figure()
     fig4.set_figwidth(5)
