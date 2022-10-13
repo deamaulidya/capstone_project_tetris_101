@@ -67,7 +67,7 @@ fig1.update_layout(
         projection_type='equirectangular'
     ),
     title={
-        'text': '<b>Tingkat Kematian Bunuh Diri Tiap Negara</b>',
+        'text': '<b>Tingkat Kematian Bunuh Diri Tiap Negara Tahun 2022</b>',
         'y':0.9,
         'x':0.5,
         'xanchor': 'center',
@@ -104,6 +104,7 @@ def custom_legend_name(new_names):
         fig2.data[i].name = new_name
 custom_legend_name(label_fig2)
 st.plotly_chart(fig1,use_container_width=True)
+st.markdown('<div style="text-align: justify;">Nilai Tingkat Kematian Bunuh Diri menggambarkan jumlah kematian bunuh diri per 100.000 populasi penduduk suatu negara di tahun tertentu.</div>', unsafe_allow_html=True)
 
 st.plotly_chart(fig2,use_container_width=True)
 
