@@ -67,7 +67,7 @@ fig1.update_layout(
         projection_type='equirectangular'
     ),
     title={
-        'text': '<b>Tingkat Kematian Bunuh Diri Tiap Negara Tahun 2022</b>',
+        'text': '<b>Tingkat Kematian Bunuh Diri Tiap Negara Tahun 2019</b>',
         'y':0.9,
         'x':0.5,
         'xanchor': 'center',
