@@ -9,6 +9,7 @@ from PIL import Image
 import plotly.graph_objects as go
 import plotly.express as px
 
+
 #preprocess data
 smr = pd.read_excel("./database/suicide.xlsx")
 smr_dunia = pd.read_excel("./database/world_suicide.xlsx")
@@ -135,7 +136,7 @@ with col2:
     st.plotly_chart(figin,use_container_width=True)
     st.markdown('<div style="text-align: justify;">Terlihat bahwa negara yang termasuk kategori low income rata-rata memiliki tingkat kematian bunuh diri yang rendah. Sebaliknya, negara yang termasuk high income rata-rata memiliki tingkat kematian yang juga tinggi. Dari grafik dapat diambil kesimpulan bahwa nilai <b>tingkat kematian bunuh diri sesuai (berbanding lurus) dengan kategori level pendapatan suatu negara</b>.</div>', unsafe_allow_html=True)
 
-
+st.write("")
 st.subheader("Beberapa Faktor Pengaruh Tingkat Bunuh Diri")
 
 st.markdown('<div style="text-align: justify;">Sebagian besar kasus percobaan bunuh diri terjadi secara impulsif atau mendadak yang berarti hal tersebut tidak yang direncanakan secara menyeluruh. Upaya tersebut dapat terjadi karena suatu faktor maupun kombinasi dari beberapa faktor. Beberapa alasan yang mendorong orang untuk melakukan percobaan bunuh diri seperti depresi, penyalahgunaan NAPZA, masalah ekonomi, takut kehilangan dan lain sebagainya. Berikut merupakan nilai dari beberapa faktor pendorong bunuh diri di dunia.</div>', unsafe_allow_html=True)
