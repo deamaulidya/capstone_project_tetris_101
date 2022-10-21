@@ -183,11 +183,13 @@ var2 = st.selectbox(label = "Pilih data pembanding", options = ('Tingkat Pengang
 fig5 = px.scatter(res.dropna(), y='smr', x=v[var2],labels={v[var2]:var2,'smr':'Suicide Mortality Rate','country':'Negara'},hover_name='country',trendline='ols',color_discrete_sequence=["red"])
 # fig5.update_layout(plot_bgcolor='#FFFFFF')
 st.plotly_chart(fig5,use_container_width=True)
+df1=df
+df1.columns=['SMR','Unemployment','GDP','Alcohol','Mental']
 colo1,colo2=st.columns(2)
 with colo1:
     st.markdown('<div style="text-align: justify;">Hubungan antara tingkat kematian bunuh diri dengan beberapa faktor penyebab bunuh diri dibandingkan dengan menghitung korelasi antara keduanya. Faktor yang dijadikan pembanding antara lain Tingkat Pengangguran, GDP per Kapita, Jumlah Konsumsi Alkohol per Kapita, Persentase Populasi dengan Gangguan Mental. Apabila nilai korelasi yang diperoleh mendekati 1 atau -1 maka dapat dikatakan hubungan antara keduanya sangatlah kuat.</div>', unsafe_allow_html=True)
 with colo2:
-    corrMatrix = df.corr()
+    corrMatrix = df1.corr()
     fig4=plt.figure()
     fig4.suptitle('Matriks Korelasi', fontsize=16)
     fig4.set_figwidth(5)
