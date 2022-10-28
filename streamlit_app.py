@@ -1,11 +1,8 @@
-from numpy import size
+
 import streamlit as st
-import lorem
-from numerize import numerize
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from PIL import Image
 import plotly.graph_objects as go
 import plotly.express as px
 
@@ -13,6 +10,7 @@ import plotly.express as px
 #preprocess data
 smr = pd.read_excel("./database/suicide.xlsx")
 smr_dunia = pd.read_excel("./database/world_suicide.xlsx")
+smr_sex = pd.read_excel("./database/smr_sex.xlsx")
 unemployment = pd.read_excel("./database/unemployment.xlsx")
 gdp = pd.read_excel("./database/gdp.xlsx")
 alcohol = pd.read_excel("./database/alcohol1.xlsx",usecols=[1,2,3])
@@ -123,17 +121,53 @@ def custom_legend_name(fig,new_names):
         fig.data[i].name = new_name
 custom_legend_name(figwi,label_smr[0:2])
 custom_legend_name(figin,label_smr[2:])
-
+figsx=px.line(smr_sex,x='year',y=smr_sex.columns[1:],labels={
+                     "year": "Tahun",
+                     "value": "Suicide Mortality Rate",
+                     "variable":"Jenis Kelamin"
+                 },
+                color_discrete_map={
+                "Perempuan": "#fb5bc2",
+                "Laki-laki":"#2f98d6"
+             })
+figsx.update_layout(
+    title={
+        'text': "<b>SMR Laki-laki vs Perempuan</b>",
+        'y':1,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'})
+avrf=smr_sex["Perempuan"].mean()
+avrm=smr_sex["Laki-laki"].mean()
+figsx.add_trace(go.Scatter(
+        name='Rata-rata P',
+        x = [2000, 2019],
+        y = [avrf,avrf],
+        mode = "lines",
+        marker = dict(color = '#fdade1'),
+        hovertemplate="%{y}"
+    ),row=1, col=1)
+figsx.add_trace(go.Scatter(
+        name='Rata-rata L',
+        x = [2000, 2019],
+        y = [avrm,avrm],
+        mode = "lines",
+        marker = dict(color = '#97cceb'),
+        hovertemplate="%{y}"
+    ),row=1, col=1)
 st.plotly_chart(fig1,use_container_width=True)
-#st.markdown('<div style="text-align: justify;">Nilai Tingkat Kematian Bunuh Diri menggambarkan jumlah kematian bunuh diri per 100.000 populasi penduduk suatu negara di tahun tertentu.</div>', unsafe_allow_html=True)
+
 col1,col2=st.columns(2)
 with col1:
     st.plotly_chart(figwi,use_container_width=True)
-    st.markdown('<div style="text-align: justify;">Tingkat kematian bunuh diri Indonesia <b>sangatlah rendah</b> jika dibandingkan dengan Dunia. Dari tahun 2000 hingga tahun 2014 nilai tersebut selalu mengalami penurunan, namun mulai dari tahun 2014 hingga 2019 tingkat kematian bunuh diri di Indonesia <b>tetap konstan di angka 2.4</b>. Artinya, ada kurang lebih 2 dari 100.000 orang yang meninggal karena bunuh diri pada tahun 2019. </div>', unsafe_allow_html=True)
+    st.markdown('<div style="text-align: justify;">Tingkat kematian bunuh diri Indonesia <b>sangatlah rendah</b> jika dibandingkan dengan Dunia. Nilai tersebut selalu selalu mengalami penurunan, namun mulai dari tahun 2014 hingga 2019 tingkat kematian bunuh diri di Indonesia <b>tetap konstan di angka 2.4</b>.</div>', unsafe_allow_html=True)
 
 with col2:
-    st.plotly_chart(figin,use_container_width=True)
-    st.markdown('<div style="text-align: justify;">Terlihat bahwa negara yang termasuk kategori low income rata-rata memiliki tingkat kematian bunuh diri yang rendah. Sebaliknya, negara yang termasuk high income rata-rata memiliki tingkat kematian yang juga tinggi. Dari grafik dapat diambil kesimpulan bahwa nilai <b>tingkat kematian bunuh diri sesuai (berbanding lurus) dengan kategori level pendapatan suatu negara</b>.</div>', unsafe_allow_html=True)
+    st.plotly_chart(figsx,use_container_width=True)
+    st.markdown('<div style="text-align: justify;">Mulai tahun 2000 hingga 2019 rata-rata tingkat kematian bunuh diri <b>laki-laki adalah 14.6</b> sedangkan pada <b>perempuan hanya 7.</b> Dapat diambil kesimpulan bahwa <b>tingkat kematian bunuh diri laki-laki lebih besar dari dua kali lipat tingkat kematian bunuh diri perempuan.</b> </div>', unsafe_allow_html=True)
+st.write("")
+st.plotly_chart(figin,use_container_width=True)
+st.markdown('<div style="text-align: justify;">Terlihat bahwa negara yang termasuk kategori low income rata-rata memiliki tingkat kematian bunuh diri yang rendah. Sebaliknya, negara yang termasuk high income rata-rata memiliki tingkat kematian yang juga tinggi. Dari grafik dapat diambil kesimpulan bahwa nilai <b>tingkat kematian bunuh diri sebanding dengan kategori level pendapatan suatu negara</b>.</div>', unsafe_allow_html=True)
 
 st.write("")
 st.subheader("Beberapa Faktor Pengaruh Tingkat Bunuh Diri")
