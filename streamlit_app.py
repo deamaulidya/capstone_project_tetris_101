@@ -85,7 +85,7 @@ fig1.update_layout(
     
 )
 
-label_smr=['Dunia','Indonesia','Low','Lower Middle','Middle','Upper Middle','High']
+label_smr=['Dunia','Indonesia','Low','Lower Middle','Upper Middle','High']
 smr_wi=[0,1,2]
 smr_income=[0,3,4,5,6,7]
 figwi=px.line(smr_dunia,x='year',y=smr_dunia.columns[1:3],labels={
@@ -109,7 +109,6 @@ figin=px.line(smr_dunia,x='year',y=smr_dunia.columns[3:],labels={
                  "high": "blue",
                  "low":"red",
                  "uppermiddle":"green",
-                 "middle":"yellow",
                  "lowermiddle":"orange"
              })
 figin.update_layout(
